@@ -19,10 +19,8 @@ with open('negative-words.txt') as nega:
 
 
 # Twitter API credentials
-consumer_key = 'YOUR CONSUMER KEY'
-consumer_secret = 'YOUR CONSUMER SECRET'
-access_key = 'YOUR ACCESS KEY'
-access_secret = 'YOUR ACCESS SECRET'
+consumer_key = 'BSgxwTIxLls8VYCORWCQZ31Te'
+consumer_secret = 'CrD6rwrMpZkAgaiO2vKBUbb0zZOZvcn7VoEwLwoocJWQCj7zzk'
 
 # api endpoint
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -30,12 +28,12 @@ api = tweepy.API(auth)
 
 # Mention the maximum number of tweets that you want to be extracted.
 
-num_tweets = int(input('Enter the number of tweets you want to analyze- '))
+num_tweets = int(input('Enter the number of tweets you want to analyze: '))
 if num_tweets > 1000:
 	num_tweets = 1000
 
 
-topic = input('Enter the topic you want to scrape- ')
+topic = input('Enter the topic you want to scrape: ')
 
 for tweet in tweepy.Cursor(api.search, q= topic,
 rpp=100).items(num_tweets):
@@ -51,8 +49,8 @@ rpp=100).items(num_tweets):
 positive_percent = round(positive_sentiment*100/(positive_sentiment+negative_sentiment), 2)
 negative_percent = round(negative_sentiment*100/(positive_sentiment+negative_sentiment), 2)
 
-print(topic+" recieves "+str(positive_percent)+"% postivity and "+str(negative_percent)+"% negativity")
-print(positive_sentiment+negative_sentiment)
+print(topic+" recieves "+str(positive_percent)+"% positive sentiment and "+str(negative_percent)+"% negative sentiment")
+print(str(positive_sentiment+negative_sentiment)+" of the last "+str(num_tweets)+" tweets expressed sentiment.")
 
 
 objects = ('Positive Sentiment', 'Negative Sentiment')
